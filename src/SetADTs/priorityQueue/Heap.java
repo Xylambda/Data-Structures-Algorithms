@@ -14,7 +14,7 @@ public class Heap <E extends Comparable<E>> implements PriorityQueue <E>  {
     
     
     private int size;
-    private E V [] = null;     //Element V [0] is despised.
+    private E V [] = null;     //  Element V [0] is despised.
     
     public Heap (){
         size = 0;
@@ -40,8 +40,8 @@ public class Heap <E extends Comparable<E>> implements PriorityQueue <E>  {
      */
     public void buildHeap (E [] v) {
         size = v.length;
-        //Sifts elements one position
-        for (int i = 1; i <= size; i++)
+        
+        for (int i = 1; i <= size; i++)     //  Shifts elements one position
             V [i] = v[i - 1];
         
         Heap.this.buildHeap ();
@@ -57,6 +57,7 @@ public class Heap <E extends Comparable<E>> implements PriorityQueue <E>  {
             
             if (left <= size  && V[left].compareTo(V[pos]) > 0)
                 largest = left;
+            
             else
                 largest = pos;
             
@@ -66,6 +67,8 @@ public class Heap <E extends Comparable<E>> implements PriorityQueue <E>  {
             if (largest == pos)
                 break;
             
+            
+            //  Exchange elements
             E auxiliar = V [pos];
             V [pos] = V[largest];
             V [largest] = auxiliar;
@@ -101,8 +104,10 @@ public class Heap <E extends Comparable<E>> implements PriorityQueue <E>  {
     public void insert(E x) throws IllegalStateException {
         if (contains (x))
             throw new IllegalStateException ("Element is already in the queue");
+        
         else if (size == V.length)
             throw new IllegalStateException ("Full queue");
+        
         else{
             size++;
             V [size] = x;
@@ -129,6 +134,7 @@ public class Heap <E extends Comparable<E>> implements PriorityQueue <E>  {
     public E deleteMax() throws IllegalStateException {
         if (size == 0)
             throw new IllegalStateException ("Empty queue");
+        
         else {        
             E max = V [1];
             V [1] = V [size];
@@ -144,6 +150,7 @@ public class Heap <E extends Comparable<E>> implements PriorityQueue <E>  {
         String result = "";
         if (size == 0)
             throw new IllegalStateException ("Empty queue");
+        
         else{
             for (int i = 1; i <= size; i++)
                 result += V [i] + ", ";
@@ -151,6 +158,12 @@ public class Heap <E extends Comparable<E>> implements PriorityQueue <E>  {
             return result;
         }
     }
+    
+    
+    /** -------------------------------------------------------------------------------------
+     *  ---------------------------------- PRIVATE METHODS ----------------------------------
+     *  -------------------------------------------------------------------------------------
+     */
     
     /**
      * Checks if the array contains element x
@@ -162,6 +175,7 @@ public class Heap <E extends Comparable<E>> implements PriorityQueue <E>  {
         while (i < size){
             if (V [i].compareTo(x) == 0)
                 return true;
+            
             else
                 i++;    
         }
@@ -187,12 +201,11 @@ public class Heap <E extends Comparable<E>> implements PriorityQueue <E>  {
     }
     
     /**
-     * Retrieves a parent's node given its position
+     * Retrieves parent's node given its position
      * @param i
      * @return parent position
      */
     private int parent (int i){
         return i/2;
-    }    
-    
+    }
 }

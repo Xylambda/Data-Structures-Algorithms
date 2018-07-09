@@ -28,6 +28,7 @@ public class LinkedStack <E> implements Stack <E> {
     public int search(E element) throws NoSuchElementException {
         if (isEmpty())
             throw new IllegalStateException("Empty stack");
+        
         else{
             Node n = first;
             int i = 0;

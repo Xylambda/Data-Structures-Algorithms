@@ -1,38 +1,25 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Released under MIT License.
+ * Copyright 2018 Alejandro Pérez-Sanjuán.
  */
-package GraphADT;
+
+package GraphADT.Directed;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 /**
- *
- * @author Alejandro
+ * 
+ * @author Alejandro Pérez-Sanjuán
  */
 public interface Graph {
-    
-    /**
-     * Adds a new vertex v if v is not in the graph
-     * @param v
-     * @throws IllegalStateException 
-     */
-    void addVertex (int v) throws IllegalStateException;
-    
-    /**
-     * Removes vertex v if it is in the graph
-     * @param v
-     * @throws NoSuchElementException 
-     */
-    void removeVertex (int v) throws NoSuchElementException;
-    
+
     /**
      * Returns a list of the vertices that form the graph
      * @return 
      */
-    ArrayList <Integer> getVertices ();
+    ArrayList <Vertex> getVertices ();
     
     /**
      * Creates a new edge in this graph, going from the source vertex to the destination vertex.

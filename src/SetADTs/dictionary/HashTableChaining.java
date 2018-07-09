@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class HashTableChaining <K, V> implements Dictionary <K, V> {
 
-    private int n; //  number of elements
+    private int n;  //  number of elements
     
     //  We create an array of type buscket list
     private ArrayList <Bucket <K, V>> [] T = null;
@@ -24,7 +24,7 @@ public class HashTableChaining <K, V> implements Dictionary <K, V> {
     public HashTableChaining (int m){
         T = new ArrayList [m];
         for (int i = 0; i < m; i++)
-            T [i] = new ArrayList < Bucket <K, V> >();
+            T [i] = new ArrayList <Bucket <K, V>>();
     }
     
     private int hashFunction(K key){
@@ -35,10 +35,11 @@ public class HashTableChaining <K, V> implements Dictionary <K, V> {
     public void insert(K k, V x) throws IllegalStateException {
         if (isMember (k))
             throw new IllegalStateException ("Duplicated element: " + k.toString());
+        
         else{
-            Bucket <K, V> cubeta = new Bucket <K, V> (k, x);
+            Bucket <K, V> bucket = new Bucket <K, V> (k, x);
             int pos = hashFunction (k);
-            T[pos].add(cubeta);
+            T[pos].add(bucket);
             n++;
         }
     }
@@ -47,6 +48,7 @@ public class HashTableChaining <K, V> implements Dictionary <K, V> {
     public void delete(K k) throws NoSuchElementException {
         if (!isMember (k))
             throw new NoSuchElementException ("Element " + k.toString() + " is not in the table");
+        
         else{
             int pos = hashFunction(k);
             int i = 0;
@@ -65,12 +67,13 @@ public class HashTableChaining <K, V> implements Dictionary <K, V> {
     public boolean isMember(K k) {
         int pos = hashFunction(k);
         
-        int S = T[pos].size(); //  size of the list T[pos]
+        int S = T[pos].size();  //  size of the list T[pos]
         
         int i = 0;
         while (i < S){
             if (T[pos].get(i).getKey().equals(k))
                 return true;
+            
             else
                 i++;
         }
@@ -82,6 +85,7 @@ public class HashTableChaining <K, V> implements Dictionary <K, V> {
     public int search(K k) throws NoSuchElementException {        
         if (!isMember (k))
             throw new NoSuchElementException ("Element " + k.toString() + " is not in the table");
+        
         else
             return hashFunction(k);
     }

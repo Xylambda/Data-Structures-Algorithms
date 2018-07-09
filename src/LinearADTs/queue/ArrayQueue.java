@@ -31,6 +31,7 @@ public class ArrayQueue <E> implements Queue <E> {
     public int search(E element) throws NoSuchElementException {
         if (isEmpty())
             throw new IllegalStateException ("Empty queue");
+        
         else{
             int i = 0;
             while (element != vector[i]){
@@ -38,6 +39,7 @@ public class ArrayQueue <E> implements Queue <E> {
                 if (i == vector.length)
                     throw new NoSuchElementException("The element is not in the queue");
             }
+            
             return i;            
         }
     }
@@ -46,6 +48,7 @@ public class ArrayQueue <E> implements Queue <E> {
     public void enqueue(E element) throws IllegalStateException {
         if (S == vector.length)
             throw new IllegalStateException ("Full queue");
+        
         else{
             int pos = (first + S)%vector.length;
             vector [pos] = element;
@@ -57,6 +60,7 @@ public class ArrayQueue <E> implements Queue <E> {
     public E dequeue() throws IllegalStateException {
         if (isEmpty())
             throw new IllegalStateException ("Empty queue");
+        
         else{
             E dequeued = vector[first];
             vector [first] = null;
@@ -72,6 +76,7 @@ public class ArrayQueue <E> implements Queue <E> {
     public E peek() throws IllegalStateException {
         if (isEmpty())
             throw new IllegalStateException ("Empty queue");
+        
         else
             return vector[first];
     }
@@ -93,6 +98,7 @@ public class ArrayQueue <E> implements Queue <E> {
     public void resize (int capacity){
         if (capacity <= vector.length)
             throw new IllegalStateException("Introduced capacity: " + capacity +" is less or equal than actual: " + vector.length);
+        
         else{
             E [] aux = (E[])new Object[capacity];
             for (int k=0; k < S; k++)
@@ -111,6 +117,7 @@ public class ArrayQueue <E> implements Queue <E> {
     public String toString (){
         if (isEmpty())
             throw new IllegalStateException("Empty queue");
+        
         else{
             String result = "";
             for (int i = 0; i < S; i++)

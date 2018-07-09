@@ -26,6 +26,7 @@ public class LinkedQueue <E> implements Queue <E> {
     public int search(E element) throws NoSuchElementException {
         if (isEmpty())
             throw new IllegalStateException ("Empty queue");
+        
         else{
             Node n = first;
             int i = 0;
@@ -103,6 +104,7 @@ public class LinkedQueue <E> implements Queue <E> {
     public String toString(){
         if (isEmpty())
             throw new IllegalStateException("Empty queue");
+        
         else{
             String result = "";
             Node <E> initial = first;

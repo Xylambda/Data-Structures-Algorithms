@@ -56,6 +56,7 @@ public class BSTimplementation <E extends Comparable <E>> implements BST <E> {
         Node <E> z = new Node <> (data);
         if (root == null)
             root = z;
+        
         else{
             Node <E> parentNode = null;
 
@@ -64,8 +65,10 @@ public class BSTimplementation <E extends Comparable <E>> implements BST <E> {
                 int comparable = n.getData().compareTo(data);
                 if (comparable == 0 )
                     throw new IllegalArgumentException("The value is already in the tree");                
+                
                 else if (comparable < 0)
                     n = n.getRight();
+                
                 else
                     n = n.getLeft();
             } // while
@@ -76,6 +79,7 @@ public class BSTimplementation <E extends Comparable <E>> implements BST <E> {
             
             if (comparable < 0)
                 parentNode.setRight(z);
+            
             else
                 parentNode.setLeft(z);
         }
@@ -86,10 +90,11 @@ public class BSTimplementation <E extends Comparable <E>> implements BST <E> {
     public void delete (E data){
         if (root == null)
             throw new IllegalStateException ("Empty tree");
+        
         else{
             Node <E> deleted = search(data);
             Node <E> parent = deleted.getParent(); //We save a parent reference
-            // --------------------- Case 1: Has 3 childs ---------------------
+            // --------------------- Case 1: Has 2 childs ---------------------
             if (deleted.getRight() != null && deleted.getLeft() != null){
                 //Find maximum of left subtree
                 Node <E> max = maximum (deleted.getLeft());
@@ -100,6 +105,7 @@ public class BSTimplementation <E extends Comparable <E>> implements BST <E> {
                 // Delete duplicate element of the tree
                 if (max.getParent().getLeft().equals(max))
                     max.getParent().setLeft(null);
+                
                 else
                     max.getParent().setRight(null);
             }
@@ -113,11 +119,13 @@ public class BSTimplementation <E extends Comparable <E>> implements BST <E> {
                 if (deleted.equals(root)) {
                     root = child;
                 }
+                
                 else{
                     child.setParent(parent);
                     
                     if(deleted.equals(parent.getLeft()))
                         parent.setLeft(child);
+                    
                     else
                         parent.setRight(child);
                 }
@@ -128,6 +136,7 @@ public class BSTimplementation <E extends Comparable <E>> implements BST <E> {
                 
                 if (comparable < 0) // parent less than deleted
                     parent.setRight(null); 
+                
                 else
                     parent.setLeft(null);
             }
@@ -136,17 +145,17 @@ public class BSTimplementation <E extends Comparable <E>> implements BST <E> {
 
     @Override
     public Node <E> maximum (Node <E> aux) {
-        while (aux.getRight() != null){
+        while (aux.getRight() != null)
             aux = aux.getRight();
-        }
+        
         return aux;
     }
 
     @Override
     public Node <E> minimum (Node <E> aux) {
-        while (aux.getLeft() != null){
+        while (aux.getLeft() != null)
             aux = aux.getLeft();
-        }
+        
         return aux;
     }
 
@@ -155,6 +164,7 @@ public class BSTimplementation <E extends Comparable <E>> implements BST <E> {
         if (n == null){
             return -1;
         }
+        
         else{
             int leftHeight = height (n.getLeft());
             int rightHeight = height (n.getRight());
@@ -166,6 +176,7 @@ public class BSTimplementation <E extends Comparable <E>> implements BST <E> {
     public int iterativeHeight (Node <E> n){
         if (n == null)
             return -1;
+        
         else{
             Queue <Node<E>> queue = new LinkedList <>();
             queue.add(n);
@@ -178,6 +189,7 @@ public class BSTimplementation <E extends Comparable <E>> implements BST <E> {
 
                     if (actual.getLeft() != null)
                         queue.add(actual.getLeft());
+                    
                     if (actual.getRight() != null)
                         queue.add(actual.getRight());
 
@@ -274,6 +286,7 @@ public class BSTimplementation <E extends Comparable <E>> implements BST <E> {
         Queue <Node<E>> queue = new LinkedList <>();
         queue.add(n);
         int h = 0;
+        
         while (!queue.isEmpty()){
             int S = queue.size();
             
@@ -284,6 +297,7 @@ public class BSTimplementation <E extends Comparable <E>> implements BST <E> {
                 
                 if (actual.getLeft() != null)
                     queue.add(actual.getLeft());
+                
                 if (actual.getRight() != null)
                     queue.add(actual.getRight());
                 

@@ -27,12 +27,14 @@ public class LinkedList <E> implements List <E> {
     public int search(E element) throws NoSuchElementException {
         if (isEmpty())
             throw new IllegalStateException("Empty list");
+        
         else{
             Node n = first;
             int i = 0;
             while (n != null && n.getData() != element) {
                 n = n.getNext();
                 i++;
+                
                 if (i == S)
                     throw new NoSuchElementException("Element is not in the list");
             }
@@ -46,12 +48,14 @@ public class LinkedList <E> implements List <E> {
         
         if (isEmpty())
             throw new IllegalStateException("Empty list");
+        
         else {
             Node n = first;
             int counter = 0;
             while (n != null && counter < pos){
                 if (n.getNext() == null)
                     return null;
+                
                 else{
                     n = n.getNext();
                     counter++;
@@ -85,6 +89,7 @@ public class LinkedList <E> implements List <E> {
             
             if (actual == null)
                 last = node;
+            
             S++;
         }
     }
@@ -94,6 +99,7 @@ public class LinkedList <E> implements List <E> {
         checkIndex (pos, S);
         if (isEmpty())
             throw new IllegalStateException("Empty list");
+        
         else{
             Node previous = first;
 
@@ -109,6 +115,7 @@ public class LinkedList <E> implements List <E> {
 
                 if (previous == null || previous.getNext() == null)
                     throw new IllegalStateException("The node doesn't exist");
+                
                 else{
                     E deleted = (E) previous.getNext().getData(); //save reference
                     previous.setNext(previous.getNext().getNext());
@@ -139,7 +146,8 @@ public class LinkedList <E> implements List <E> {
             first = n;
             last = n;
             S++;
-        }else{
+        }
+        else{
             Node <E> n = new Node <> (element, first);
             first = n;
             S++;
@@ -172,9 +180,9 @@ public class LinkedList <E> implements List <E> {
      * @exception IllegalStateException
      */
     public E deleteLast()throws IllegalStateException{
-        if (isEmpty()){
+        if (isEmpty())
             throw new IllegalStateException("Empty list");
-        }
+        
         else{
             E deleted = first.getData();
             if (S == 1){
@@ -209,6 +217,7 @@ public class LinkedList <E> implements List <E> {
     public String toString(){
         if (isEmpty())
             throw new IllegalStateException("Empty list");
+        
         else{
             String result = "";
             Node <E> initial = first;
@@ -217,6 +226,7 @@ public class LinkedList <E> implements List <E> {
                 result += "(" + initial.getData() + ")" + " -> ";
                 initial = initial.getNext();
             }
+            
             result += "null";
             return result;   
         }

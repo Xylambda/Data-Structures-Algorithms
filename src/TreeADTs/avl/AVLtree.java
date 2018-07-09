@@ -58,6 +58,7 @@ public class AVLtree <E extends Comparable <E>> implements AVL <E> {
         
         if (y.getParent() == null)
             root = y;
+        
         else{
             
             if (y.getParent().getLeft().equals(n))
@@ -87,6 +88,7 @@ public class AVLtree <E extends Comparable <E>> implements AVL <E> {
         
         if (y.getParent() == null)
             root = y;
+        
         else{
             if (y.getParent().getLeft().equals(n))
                 y.getParent().setLeft(y);
@@ -113,14 +115,17 @@ public class AVLtree <E extends Comparable <E>> implements AVL <E> {
         if (height(n.getLeft()) >= 2 + height (n.getRight())){
             if (height (n.getLeft().getLeft()) >= height(n.getLeft().getRight()))
                 rightRotation (n);
+            
             else{
                 leftRotation(n.getLeft());
                 rightRotation (n);
             }
         }
+        
         else if (height (n.getRight()) >= 2 + height(n.getLeft())){
             if (height (n.getRight().getRight()) >= height (n.getRight().getLeft()))
                 leftRotation (n);
+            
             else{
                 rightRotation (n.getRight());
                 leftRotation (n);
@@ -133,6 +138,7 @@ public class AVLtree <E extends Comparable <E>> implements AVL <E> {
         Node <E> z = new Node <> (data);
         if (root == null)
             root = z;
+        
         else{
             Node <E> parentNode = null;
 
@@ -141,8 +147,10 @@ public class AVLtree <E extends Comparable <E>> implements AVL <E> {
                 int comparable = n.getData().compareTo(data);
                 if (comparable == 0 )
                     throw new IllegalArgumentException("The value is already in the tree");                
+                
                 else if (comparable < 0)
                     n = n.getRight();
+                
                 else
                     n = n.getLeft();
             } // while
@@ -153,6 +161,7 @@ public class AVLtree <E extends Comparable <E>> implements AVL <E> {
             
             if (comparable < 0)
                 parentNode.setRight(z);
+            
             else
                 parentNode.setLeft(z);
         }
@@ -163,17 +172,17 @@ public class AVLtree <E extends Comparable <E>> implements AVL <E> {
             balance (z);
             z = z.getParent();
         }
-        // ---- Balance tree ----
     }
 
     @Override
     public void delete(E data) {
         if (root == null)
             throw new IllegalStateException ("Empty tree");
+        
         else{
             Node <E> deleted = search(data);
             Node <E> parent = deleted.getParent(); //We save a parent reference
-            // --------------------- Case 1: Has 3 childs ---------------------
+            // --------------------- Case 1: Has 2 childs ---------------------
             if (deleted.getRight() != null && deleted.getLeft() != null){
                 //Find maximum of left subtree
                 Node <E> max = maximum (deleted.getLeft());
@@ -184,6 +193,7 @@ public class AVLtree <E extends Comparable <E>> implements AVL <E> {
                 // Delete duplicate element of the tree
                 if (max.getParent().getLeft().equals(max))
                     max.getParent().setLeft(null);
+                
                 else
                     max.getParent().setRight(null);
             }
@@ -194,14 +204,15 @@ public class AVLtree <E extends Comparable <E>> implements AVL <E> {
                 Node <E> child = deleted.getRight() != null ? deleted.getRight() : deleted.getLeft();
                 
                 //If is the root
-                if (deleted.equals(root)) {
+                if (deleted.equals(root))
                     root = child;
-                }
+                
                 else{
                     child.setParent(parent);
                     
                     if(deleted.equals(parent.getLeft()))
                         parent.setLeft(child);
+                    
                     else
                         parent.setRight(child);
                 }
@@ -212,6 +223,7 @@ public class AVLtree <E extends Comparable <E>> implements AVL <E> {
                 
                 if (comparable < 0) // parent less than deleted
                     parent.setRight(null); 
+                
                 else
                     parent.setLeft(null);
             }
@@ -222,7 +234,6 @@ public class AVLtree <E extends Comparable <E>> implements AVL <E> {
                 balance (parent);
                 parent = parent.getParent();
             }
-            // ---- Balance tree ----
         }
     }
 
@@ -246,6 +257,7 @@ public class AVLtree <E extends Comparable <E>> implements AVL <E> {
     public int height(Node<E> n) {
         if (n == null)
             return -1;
+        
         else{
             Queue <Node<E>> queue = new LinkedList <>();
             queue.add(n);
@@ -258,6 +270,7 @@ public class AVLtree <E extends Comparable <E>> implements AVL <E> {
 
                     if (actual.getLeft() != null)
                         queue.add(actual.getLeft());
+                    
                     if (actual.getRight() != null)
                         queue.add(actual.getRight());
 

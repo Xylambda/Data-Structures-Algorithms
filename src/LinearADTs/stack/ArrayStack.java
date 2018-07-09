@@ -31,6 +31,7 @@ public class ArrayStack <E> implements Stack <E> {
     public int search(E element) throws NoSuchElementException {
         if (isEmpty())
             throw new IllegalStateException("Empty Stack");
+        
         else{
             int i = 0;
             while (element != vector[i]){
@@ -46,6 +47,7 @@ public class ArrayStack <E> implements Stack <E> {
     public void push(E element) throws IllegalStateException {
         if (S == vector.length)
             throw new IllegalStateException("Full stack");
+        
         else{
             vector[S] = element;          
             S ++;
@@ -56,6 +58,7 @@ public class ArrayStack <E> implements Stack <E> {
     public E pop() throws EmptyStackException {
         if (isEmpty())
             throw new IllegalStateException("Empty stack");
+        
         else{
             E deleted = vector[S - 1];
             vector[S - 1] = null;
@@ -68,6 +71,7 @@ public class ArrayStack <E> implements Stack <E> {
     public E peek() throws EmptyStackException {
         if (isEmpty())
             throw new IllegalStateException("Empty stack");
+        
         else
             return vector[S-1];
     }
@@ -91,6 +95,7 @@ public class ArrayStack <E> implements Stack <E> {
     public String toString (){
         if (isEmpty())
             throw new IllegalStateException("Empty stack"); 
+        
         else{
             String result = "";
             for (int i = 0; i < S; i++)

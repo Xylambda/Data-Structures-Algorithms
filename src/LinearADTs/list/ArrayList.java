@@ -29,6 +29,7 @@ public class ArrayList <E> implements List <E> {
     public int search(E element) throws NoSuchElementException {
         if (isEmpty())
             throw new IllegalStateException("Empty list");
+        
         else{
             int i = 0;
             while (element != vector[i]){
@@ -36,6 +37,7 @@ public class ArrayList <E> implements List <E> {
                 if (i == vector.length)
                     throw new NoSuchElementException("The element is not in the list");    
             }
+            
             return i;        
         }
     }
@@ -51,6 +53,7 @@ public class ArrayList <E> implements List <E> {
         checkIndex (pos, S + 1);
         if (S == vector.length)
             throw new IllegalStateException("Full list");
+        
         else{
             for (int i = S - 1; i >= pos; i--)
                  vector[i+1] = vector[i];
@@ -64,12 +67,14 @@ public class ArrayList <E> implements List <E> {
         checkIndex (pos, S);
         if (isEmpty())
             throw new IllegalStateException("Empty list");
+        
         else{
             E deleted = vector[pos];
             for (int i = pos; i < S-1; i++)
                 vector[i] = vector [i + 1];
             vector [S - 1] = null;
             S --;
+            
             return deleted;
         }
     }
@@ -135,6 +140,7 @@ public class ArrayList <E> implements List <E> {
     public String toString (){
         if (isEmpty())
             throw new IllegalStateException("Empty list");
+        
         else{
             String result = "";
             for (int i = 0; i < S; i++)
