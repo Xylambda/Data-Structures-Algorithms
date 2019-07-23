@@ -1,6 +1,15 @@
 # Data-Structures-Algorithms
 This repository provides implementations of popular algorithms and abstract data types using JAVA.
 
+## Why does this repository exist?
+This repository contains the syllabus for the subject Data Structures and Algorithms I took in Computer Science at UPV. I used it to track the subject.
+
+## Is it complete?
+No, the algorithms part got lost, and I am planning to write everything in a more elegant language like Python or C#, but it is not a priority.
+
+## Are the implementation recursive or iterative?
+You can find both, but I tend to solve things iteratively for obvious reasons.
+
 ## Course
 ### Linear Abstract Data Types
 1. List
